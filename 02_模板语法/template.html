@@ -6,19 +6,30 @@
     <script src="../js/vue.js"></script>
 </head>
 <body>
-    <div id="app">
-        {{msg}}
-        {{msg.toUpperCase()}}
-    </div>
-    
+<div id="app">
+    {{msg}}
+    {{msg.toUpperCase()}}
+</div>
+<div id="app1">
+    {{msg}}
+    {{msg.toUpperCase()}}
+</div>
+
+
 </body>
 <script>
-<!--  {{}} 大括号表达式中可以执行 js 函数 -->
+    // <!--  {{}} 大括号表达式中可以执行 js 函数 -->
 
-    var vm = new Vue({
+    const vm = new Vue({
         el: '#app',
         data: {
-           msg: 'hello'
+            msg: 'hello'
+        }
+    });
+    const vm1 = new Vue({
+        el: '#app1',
+        data: {
+            msg: 'hello'
         }
     })
 
