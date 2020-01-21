@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{msg}}
+        {{msg.toUpperCase()}}
+    </div>
+    
+</body>
+<script>
+<!--  {{}} 大括号表达式中可以执行 js 函数 -->
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+           msg: 'hello'
+        }
+    })
+
+</script>
+</html>
