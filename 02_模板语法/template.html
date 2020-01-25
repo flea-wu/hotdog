@@ -13,12 +13,17 @@
 <div id="app1">
     {{msg}}
     {{msg.toUpperCase()}}
+    <div @click="demo">弹出</div>
 </div>
 
 
 </body>
 <script>
-    // <!--  {{}} 大括号表达式中可以执行 js 函数 -->
+    //  {{}} 大括号表达式中可以执行 js 函数，大括号表达式是读取data中的数据
+    //  数据绑定与双向数据绑定；数据绑定：数据在页面与内存中的变量自动转移，双向数据绑定：如果两个方向数据都可以自动转移
+    //  强制数据绑定 v-bind:xxx 或 :xxx
+    //  强制绑定数据监听 v-on:事件 或 @事件
+
 
     const vm = new Vue({
         el: '#app',
@@ -30,6 +35,11 @@
         el: '#app1',
         data: {
             msg: 'hello'
+        },
+        methods: {
+            demo() {
+                alert("hlloeeqeqqe")
+            }
         }
     })
 
