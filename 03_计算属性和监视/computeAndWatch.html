@@ -11,8 +11,8 @@
     名：<input type="text" placeholder="名" v-model="lastName"><br>
     <hr>
     姓名1(单向)：<input type="text" placeholder="姓名1" v-model="fullName"><br>
-    姓名2(单向)：<input type="text" placeholder="姓名2"><br>
-    姓名3(双向)：<input type="text" placeholder="姓名3"><br>
+    姓名2(单向)：<input type="text" placeholder="姓名2" v-model="fullName1"><br>
+    姓名3(双向)：<input type="text" placeholder="姓名3" v-model="fullName2"><br>
 </div>
 
 </body>
@@ -43,15 +43,49 @@
         el: '#app',
         data: {
             firstName: 'A',
-            lastName: 'B'
+            lastName: 'B',
+            fullName1: 'A B'
         },
+        // 计算属性
         computed: {
             // fullName() 什么时候执行 1.初始化执行 2.相关的data属性数据发生改变
             fullName() { //计算属性中的一个方法，方法的返回值作为属性
-                return this.firstName + '  ' + this.lastName;
+                return this.firstName + ' ' + this.lastName;
+            },
+            //双向绑定
+            fullName2: {
+                get() {
+                    return this.firstName + ' ' + this.lastName;
+                },
+                // set方法接收一个参数（就是变化后的值）
+                set(value) {
+                    //弊端有空格的限制
+                    let split = value.split(' ');
+                    this.firstName = split[0]
+                    this.lastName = split[1]
+                }
             }
+        },
+        // 监视 写法1 (配置监视)
+        watch: {
+            // 监视属性：firstName ；回调函数可以定义两个参数，第一个参数：新值，第二个参数：老值
+            // 回调函数的三个概念：1.自己定义的 2.未主动调用 3.但是生效了
+            // firstName: function (newValue) {
+            //     this.fullName1 = newValue + " " + this.lastName;
+            // },
+            // lastName: function (newValue) {
+            //     this.fullName1 = this.firstName + " " + newValue;
+            // }
         }
     })
+    // 监视 写法2
+    vm.$watch('firstName', function (newValue) {
+        this.fullName1 = newValue + ' ' + this.lastName;
+    })
+    vm.$watch('lastName', function (newValue) {
+        this.fullName1 = this.firstName + " " + newValue;
+    })
+
 
 </script>
 </html>
