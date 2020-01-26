@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ifAndShow</title>
+</head>
+<body>
+
+<div id="app">
+
+    <h2>v-if 和 v-else 配合使用</h2>
+    <p v-if="ok">显示</p>
+    <p v-else>不显示</p>
+    <hr>
+    <h2>v-show使用</h2>
+    <p v-show="ok">显示</p>
+    <p v-show="!ok">不显示</p>
+
+
+    <button @click="ok=!ok">切换</button>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    /*
+    * 1.条件渲染指令
+
+​	    v-if
+
+​	    v-else
+
+​	    v-show
+
+    2.比较 v-if 与 v-show
+
+​	    如果需要频繁切换 v-show 比较好，v-show 只是修改了元素的属性，使其不可见，元素不消失；v-if、else 是让其元素消失
+
+    3.v-if 和 v-else 使用注意
+
+       如使用v-if 组合 v-else，请务必保证被渲染的两个div是连续的、紧挨着的，否则if..else..渲染失败
+
+
+        *
+    * */
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            ok: true
+        }
+    })
+</script>
+</html>
