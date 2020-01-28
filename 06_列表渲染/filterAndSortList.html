@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vFor</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" placeholder="过滤条件" v-model="filterCondition">
+    <div v-for="(a,index) in filterData" :key="index">
+        姓名：{{ a.name }} --- 年龄：{{a.age}} 岁 ---- 下标 {{index}}
+    </div>
+    <button @click="sortData(1)">年龄升序</button>
+    <button @click="sortData(-1)">年龄降序</button>
+    <button @click="sortData(0)">复原</button>
+</div>
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+
+    /*
+
+    * */
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            p: [
+                {name: 'aaskjhd', age: 1},
+                {name: 'badad', age: 2},
+                {name: 'c221lll', age: 3},
+                {name: 'dqweq', age: 4}
+            ],
+            filterCondition: '',
+            order: 0
+        },
+        computed: {
+            filterData() {
+                // 结构性语法赋值 ES6语法，若使用了结构性语法赋值，方法中使用到了变量，无需加this关键字
+                // const {p, filterCondition,order} = this
+                let ts = this.p.filter(e => e.name.indexOf(this.filterCondition) !== -1);
+                if (this.order !== 0) {
+                    ts = ts.sort((s1, s2) => {
+                        if (this.order === 1) {
+                            // 升序
+                            return s1.age - s2.age
+                        } else {
+                            // 降序
+                            return s2.age - s1.age
+                        }
+                    });
+                }
+                return ts;
+            }
+        },
+        methods: {
+            sortData(sortValue) {
+                this.order = sortValue;
+            }
+        }
+    })
+
+</script>
+</html>
