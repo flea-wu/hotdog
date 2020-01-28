@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vFor</title>
+</head>
+<body>
+<div id="app">
+    <!--  :key="index" key属性能够提升性能(主要作用于数据更新时)。  -->
+    <div v-for="(a,index) in p" :key="index">
+        姓名：{{ a.name }} --- 年龄：{{a.age}} 岁 ---- 下标 {{index}}
+        <!--  vue 中自定义方法中不能取名 'delete' -->
+        <button @click="deleteP(index)">删除</button>
+        <button @click="updateP(index,{name:'e',age:9})">更新</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+
+    /*
+    * 1.列表显示
+
+​	数组：v-for / index
+
+​	对象：v-for / key
+
+    2.列表的更新显示
+
+​	删除
+
+​	替换
+    * */
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            p: [
+                {name: 'a', age: 1},
+                {name: 'b', age: 2},
+                {name: 'c', age: 3},
+                {name: 'd', age: 4}
+            ]
+        },
+        methods: {
+            deleteP(index) {
+                this.p.splice(index, 1)
+            },
+            updateP(index, value) {
+                console.log(value)
+                this.p.splice(index, 1, value)
+            }
+        }
+    })
+
+</script>
+</html>
