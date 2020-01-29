@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>eventHandle</title>
+</head>
+<body>
+<div id="app">
+    <h2>1.绑定监听</h2>
+    <button @click="test">按钮1</button>
+    <button @click="test1(1,$event)">按钮2</button>
+
+    <h2>2.事件修饰符</h2>
+    <div style="width: 40px;height: 40px;background-color: red" @click="testa">
+        <!--    阻止事件冒泡    -->
+        <div style="width: 20px;height: 20px;background-color: blue" @click.stop="testb"></div>
+    </div>
+    <a href="http://www.wzzzzzz.com" @click.prevent="test">回家</a>
+    <h2>3.按键修饰符</h2>
+    <!--    按下回车执行事件-->
+    <input type="text" placeholder="输入" @keyup.enter="test3">
+    <input type="text" placeholder="输入" @keyup.13="test3">
+
+</div>
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el: "#app",
+        methods: {
+            test(event) {
+                // vue 中方法默认传值
+                console.log(event)
+                alert('hhhhhh')
+            },
+            test1(value, event) {
+                console.log(value)
+                console.log(event)
+                alert('hhhhhh222')
+            },
+            // 阻止冒泡事件
+            testa() {
+                alert('a')
+            },
+            testb() {
+                alert('b')
+            },
+            test3() {
+                alert('b')
+            }
+
+        }
+    })
+
+</script>
+</html>
