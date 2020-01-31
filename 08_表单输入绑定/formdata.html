@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>formdata</title>
+</head>
+<body>
+<form id="app" action="/sss" @submit.prevent="test">
+    <input type="text" v-model="name">
+</form>
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            name: ''
+        },
+        methods: {
+            test(event) {
+                console.log(event)
+            }
+
+        }
+    })
+
+</script>
+</html>
