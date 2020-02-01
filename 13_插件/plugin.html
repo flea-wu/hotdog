@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>插件</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="./v-myplugin.js"></script>
+<script type="text/javascript">
+    // 声明使用插件
+    Vue.use(MyPlugin) // 内部会执行MyPlugin中install方法 MyPlugin.install(Vue)
+
+    Vue.myGlobalMethod()
+
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+
+        }
+    })
+    vm.$myMethod()
+</script>
+</html>

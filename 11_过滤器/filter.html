@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+</head>
+<body>
+
+<div id="demo">
+    <p>{{time | dateStr}}</p>
+    <p>{{time | dateStr('YYYY-MM-DD hh:mm:ss')}}</p>
+</div>
+
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.js"></script>
+<script>
+    // 自定义过滤器
+    Vue.filter('dateStr', (value, format) => {
+        return moment(value).format(format | 'YYYY-MM-DD hh:mm:ss');
+    })
+    // Vue.filter('dateStr', (value,format= 'YYYY-MM-DD hh:mm:ss') => {
+    //     return moment(value).format(format);
+    // })
+
+    var vm = new Vue({
+        el: '#demo',
+        data: {
+            time: new Date()
+        }
+    })
+</script>
+</html>

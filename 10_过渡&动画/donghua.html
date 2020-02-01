@@ -2,26 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>生命周期</title>
+    <title>动画</title>
+    <style>
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+        {
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
+
+<div id="demo">
+    <button @click="show = !show">
+        Toggle
+    </button>
+    <transition name="fade">
+        <p v-if="show">hello</p>
+    </transition>
+</div>
 
 </body>
 <script type="text/javascript" src="../js/vue.js"></script>
 <script>
+    /*
+    1.在模板元素外包裹<transition><transition/>标签
 
+    2.定义class样式
+
+​	    1.指定过度样式：transition
+
+​	    2.指定隐藏时的样式：opacity/其他
+
+    3.过渡的类名
+
+​	    xxx-enter-active: 指定显示的 transition
+
+​	    xxx-enter-active:指定隐藏的 transition
+
+​	    xxx-enter:指定隐藏时的样式
+    * */
     var vm = new Vue({
-        el: "#app",
+        el: '#demo',
         data: {
-            name: ''
-        },
-        methods: {
-            test(event) {
-                console.log(event)
-            }
-
+            show: true
         }
     })
-
 </script>
 </html>
